@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>petOnly Enterprise</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+       <link rel="stylesheet" type="text/css" href="./css/myang6Style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.css"/>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.js"></script>
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </head>
+
+  <!--
+    ✓ Create Angular shell app
+    ✓ Use `bower install angular-material`
+    ✓ Load the CSS (before our app.css),
+    ✓ Load the angular-material.js library and its dependent angular-aria.js and angular-animate.js libraries.
+    ✓ Then set the module dependency on 'ngMaterial'
+    ✓ Use wirefames to determine containers
+    ✓ Configure layouts
+    ✓ Lock open the sideNav, add shadow
+
+    ✓ Add (hard-coded) HTML content
+
+    -> Register Icons
+
+    Integrate with App logic
+    Add Responsiveness
+    Add Theming
+  -->
+
+  <body layout="column"  ng-app="myApp" ng-controller="AppCtrl">
+ <md-toolbar layout="row">
+       <h2>petOnly Enterprise</h2>
+       <span flex></span>
+       <form ng-submit="logout()">
+        <md-button class="md-raised md-primary md-hue-1" ng-click="logout()">Logout</md-button>
+       </form>
+        </md-toolbar>
+
+
+ <div flex layout="row">
+
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2" style="height: 800px;">
+        <div layout="column"> 
+        
+      <md-card >
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Welcome, Samantha</span>
+            
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content layout="column" layout-align="space-between">
+          <div class="md-media-md card-media">
+               <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+          </div>
+          <div>
+          <h3>Personal Details:</h3>
+          <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+          <p>+1 617 669 2586</p>
+          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+          <address>75,Saint Alponsus Street</address>
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          <p>Working as manager in petOnly enterpise. Previous experience at pet adoption center for five years.</p>
+          </div>
+          <md-card-actions layout="row" >
+            <md-button class="md-icon-button" data-toggle="modal" data-target="#myModal" aria-label="Edit">
+            <md-tooltip md-direction="bottom" >Edit Profile</md-tooltip>
+               <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+
+            </md-button>
+                    <!-- Button trigger modal -->
+             
+            <md-button class="md-icon-button" aria-label="Messages" ng-click="toggleCustom()" >
+             <md-tooltip md-direction="bottom">Messages</md-tooltip>
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                <span class="badge">12</span>
+            </md-button>
+
+            <md-button class="md-icon-button"   data-toggle="modal" data-target="#myModalEmail" aria-label="Share">
+             <md-tooltip md-direction="bottom">Email</md-tooltip>
+              <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+            </md-button>
+          </md-card-actions>
+        
+        </md-card-content>
+      </md-card>
+       </div>
+
+        <!--div for messages -->
+        <div id="messages">
+        <md-list ng-hide="custom">
+      <md-subheader class="md-no-sticky">Messages for you</md-subheader>
+      <md-list-item class="md-3-line" ng-repeat="item in todos">
+        <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />
+        <div class="md-list-item-text" layout="column">
+          <h3>{{ item.who }}</h3>
+          <h4>{{ item.what }}</h4>
+          <p>{{ item.notes }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+   </div>
+
+        </md-sidenav>
+
+           <!-- Modal for edit -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
+                </span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+              </div>
+              <div class="modal-body">
+                 <form  role="form">
+                <div class="form-group">
+                  <label for="addr">Address:</label>
+                  <input type="text" class="form-control" id="addr">
+                </div>
+                <div class="form-group">
+                  <label for="phn">Phone Number:</label>
+                  <input type="text" class="form-control" id="phn">
+                </div>
+                <div class="form-group">
+                  <label for="profileInfo">Profile Info:</label>
+                 <textarea class="form-control" rows="5" id="profileInfo"></textarea>
+                </div>
+               </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Modal for email -->
+        <div class="modal fade" id="myModalEmail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
+                </span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Profile</h4>
+              </div>
+              <div class="modal-body">
+                 <form  role="form">
+                <div class="form-group">
+                  <label for="emailaddr">Email Address:</label>
+                  <input type="text" class="form-control" id="emailaddr">
+                </div>
+                <div class="form-group">
+                  <label for="emailBody">Email Body:</label>
+                 <textarea class="form-control" rows="5" id="emailBody"></textarea>
+                </div>
+               </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send Email</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+       
+
+   <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Users">
+        <md-content class="md-padding signUP">
+          <h4 class="md-display-1">Users in the Enterprise</h4>
+          <p>The List of Pet owners and their details.</p>
+           <div class="row">
+    
+     
+      <table id="demo1"  class="table table-striped" ng-controller="AppCtrl1">
+    <tr>
+      <th>Sr. No.</td>
+      <th>Owner Name</th>
+      <th>Location </th>
+      <th>Number of Pets Owned</th>
+      <th>Number of Requests</th>
+    </tr>
+    <tr ng-repeat="x in names">
+       <td>{{ $index + 1 }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.City | uppercase}}</td>
+    <td>{{ x.Pets }}</td>
+    <td>{{ x.Requests }}</td>
+  </tr>
+
+      </table>
+  
+</div>
+        </md-content>
+      </md-tab>
+      <md-tab label="Pets and Requests">
+        <md-content class="md-padding signUP">
+          <h1 class="md-display-1">Pets in the Enterprise</h1>
+          
+              <button type="button" onclick="loadDoc()" class="btn btn-primary">See Requests</button>
+                     <div>
+                      <table id="demo"  class="table table-striped"></table>
+                    </div>
+
+       
+     
+             
+        </md-content>
+      </md-tab>
+
+
+
+      <md-tab label="Statistics">
+        <md-content class="md-padding signUP">
+          <h1 class="md-display-2">Statistics</h1>
+          <p>Number of requests per pet owner.</p>
+
+          <div class="chart"></div>
+          
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+
+</div>
+
+
+
+
+
+ <footer>
+        <div layout="row" layout-align="center center">
+            <p>Copyrights: petOnly Enterprise</p>
+        </div>
+    </footer>
+    
+
+<!--footer <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer> -->
+
+
+     
+
+     <!-- Angular Material requires Angular.js Libraries -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-animate.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-aria.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+  <!-- Angular Material Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-animate.min.js"></script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+<!-- <script src="C:/My Work/WebDesign/Project/users/DemoController.js"></script>-->
+<script type="text/javascript" src="./users/d3graph.js"  ></script>
+
+
+    
+
+    <script type="text/javascript">
+     var app = angular.module('myApp', ['ngMaterial']);
+    app.controller('AppCtrl', function($scope, $http) {
+
+
+      $scope.imagePath = './images/img2.jpe';
+      $http.get("https://api.myjson.com/bins/1y915")
+    .then(function (response) {$scope.names = response.data.records;});
+
+      
+  $scope.custom = true;
+        $scope.toggleCustom = function() {
+            $scope.custom = $scope.custom === false ? true: false;
+          };
+
+           var imagePath = './images/jsmith.jpg';
+            
+
+    $scope.phones = [
+      { type: 'Home', number: '(555) 251-1234' },
+      { type: 'Cell', number: '(555) 786-9841' },
+      { type: 'Office', number: '(555) 314-1592' }
+    ];
+    $scope.todos = [
+      {
+        face : imagePath,
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        face : imagePath,
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        face : imagePath,
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        face : imagePath,
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        face : imagePath,
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        face : imagePath,
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+      {
+        face : imagePath,
+        what: 'Brunch this weekend?',
+        who: 'Min Li Chan',
+        when: '3:08PM',
+        notes: " I'll be in your neighborhood doing errands"
+      },
+    ];
+      
+
+       $scope.logout = function() {
+        window.location = "ang3.html";
+    };
+   
+         });
+
+ app.controller('AppCtrl1', function($scope, $http) {
+
+$http.get("./users/users1.php")
+  .then(function (response) {$scope.names = response.data.records;});
+
+
+});
+app.config(function( $mdThemingProvider){
+               $mdThemingProvider.theme('default')
+              .primaryPalette('light-green')
+              .accentPalette('deep-purple');
+
+          })
+
+
+
+
+    </script>
+
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      myFunction(xhttp);
+    }
+  };
+  xhttp.open("GET", "requestscatalog.xml", true);
+  xhttp.send();
+}
+
+function myFunction(xml) {
+  var i;
+  var xmlDoc = xml.responseXML;
+  var table="<tr><th>Request to</th><th>Message</th><th>Sender</th><th>Status</th><th>Date</th></tr>";
+  var x = xmlDoc.getElementsByTagName("Request");
+  for (i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("MESSAGE")[0].childNodes[0].nodeValue +
+    "</td><td>"+
+    x[i].getElementsByTagName("RECEIVER")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("STATUS")[0].childNodes[0].nodeValue +
+    "</td><td>"+
+    x[i].getElementsByTagName("DATE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+  
+}
+
+    </script>
+
+  </body>
+</html> 

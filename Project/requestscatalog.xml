@@ -1,0 +1,65 @@
+<CATALOG>
+<Request>
+<TITLE>Pet Walker</TITLE>
+<MESSAGE>Pet walking required at Park Street</MESSAGE>
+<RECEIVER>Bonnie Tyler</RECEIVER>
+<STATUS>Pending</STATUS>
+<DATE>12.10.2015</DATE>
+</Request>
+<Request>
+<TITLE>Pet Groomer</TITLE>
+<MESSAGE>Haircut and brushing required</MESSAGE>
+<RECEIVER>Dolly Parton</RECEIVER>
+<STATUS>Processing</STATUS>
+<DATE>12.14.2015</DATE>
+</Request>
+<Request>
+<TITLE>Pet Adoption</TITLE>
+<MESSAGE>Seeking Two Cats</MESSAGE>
+<RECEIVER>Dolly Parton</RECEIVER>
+<STATUS>Completed</STATUS>
+<DATE>12.14.2015</DATE>
+</Request>
+<Request>
+<TITLE>Pet Walking</TITLE>
+<MESSAGE>Pet Walking at Park Street</MESSAGE>
+<RECEIVER>Gary Moore</RECEIVER>
+<STATUS>Pending</STATUS>
+<DATE>12.17.2015</DATE>
+</Request>
+<Request>
+<TITLE>Pet Grooming</TITLE>
+<MESSAGE>Bathing and Brushing required</MESSAGE>
+<RECEIVER>Eros Ramazzotti</RECEIVER>
+<STATUS>Completed</STATUS>
+<DATE>12.17.2015</DATE>
+</Request>
+<Request>
+<TITLE>Pet Doctor</TITLE>
+<MESSAGE>Weakness</MESSAGE>
+<RECEIVER>Gary Moore</RECEIVER>
+<STATUS>Completed</STATUS>
+<DATE>12.12.2015</DATE>
+</Request>
+<Request>
+<TITLE>Pet Doctor</TITLE>
+<MESSAGE>Regular Checkup</MESSAGE>
+<RECEIVER>Dr.Hook</RECEIVER>
+<STATUS>Processing</STATUS>
+<DATE>12.19.2015</DATE>
+</Request>
+<Request>
+<TITLE>Pet Adoption</TITLE>
+<MESSAGE>Seeking One German Sherpard</MESSAGE>
+<RECEIVER>Rod Stewart</RECEIVER>
+<STATUS>Pending</STATUS>
+<DATE>12.19.2015</DATE>
+</Request>
+<Request>
+<TITLE>Romanza</TITLE>
+<MESSAGE>Andrea Bocelli</MESSAGE>
+<RECEIVER>Andrea Bocelli</RECEIVER>
+<STATUS>Pending</STATUS>
+<DATE>12.14.2015</DATE>
+</Request>
+</CATALOG>

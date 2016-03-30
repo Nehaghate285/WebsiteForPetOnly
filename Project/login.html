@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>petOnly Enterprise</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+    <link rel="stylesheet" type="text/css" href="./css/myStyle.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.css"/>
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <!--
+    ✓ Create Angular shell app
+    ✓ Use `bower install angular-material`
+    ✓ Load the CSS (before our app.css),
+    ✓ Load the angular-material.js library and its dependent angular-aria.js and angular-animate.js libraries.
+    ✓ Then set the module dependency on 'ngMaterial'
+    ✓ Use wirefames to determine containers
+    ✓ Configure layouts
+    ✓ Lock open the sideNav, add shadow
+
+    ✓ Add (hard-coded) HTML content
+
+    -> Register Icons
+
+    Integrate with App logic
+    Add Responsiveness
+    Add Theming
+  -->
+
+
+  <body layout="column"   ng-app="myApp"  ng-controller="DemoCtrl as ctrl">
+ 
+    <md-toolbar layout="row">
+       <h3>petOnly Enterprise</h3>
+        </md-toolbar>
+
+        <md-content >
+   <div ng-include="template.url"></div>
+<!--carousel angualrjs -->
+    <div>
+      <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+          <img ng-src="{{slide.image}}">
+          
+        </slide>
+      </carousel>
+    </div>
+ </md-content>
+
+   <div flex layout="row">
+
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+        <div layout="column"> 
+          <md-card>
+        <md-card-title>
+          <md-card-title-text>
+             <md-card-title-text>
+            <span class="md-headline">Login</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        
+        <form ng-submit="login(username, password)">
+        <md-card-actions layout="column" layout-align="end center">
+        <md-input-container flex>
+          <label>Username</label>
+          <input type="text" ng-model="username" class="ng-pristine ng-valid"/>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Password</label>
+          <input type="password" ng-model="password" class="ng-pristine ng-valid"/>
+        </md-input-container>
+         <br/>
+  {{loginError}}  {{loggedUser}}
+  <br/><br/>
+          <md-button class="md-raised md-primary" ng-click="">Login</md-button>
+         </md-card-actions>
+       </form>
+      </md-card>
+    
+       </div>
+        </md-sidenav>
+
+
+
+  <md-content class="md-padding" id="signUP">
+
+
+    <md-card>
+        <md-card-title>
+          <md-card-title-text>
+           <span class="md-headline">SignUp</span>
+          </md-card-title-text>
+          <md-card-title-media>
+            <div class="md-media-lg card-media"></div>
+          </md-card-title-media>
+        </md-card-title>
+        <md-card-actions layout="column" layout-align="end center">
+    <form ng-submit="$event.preventDefault()" name="searchForm" >
+       <div flex-gt-sm="80">
+     <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+          <p>
+            Please fill out the Sign up form to explore the features of petOnly !
+          </p>
+
+        <md-input-container>
+          <md-switch ng-model="showHints">Showing {{showHints ? "Hints" : "Errors"}}</md-switch>
+        </md-input-container>
+      </div>
+        </div>
+
+      <div layout-gt-sm="row">
+       <md-input-container class="md-block" flex-gt-sm>
+          <label>Name</label>
+          <input md-maxlength="30" required name="name" ng-model="user.name" />
+          <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+          <div ng-messages="searchForm.name.$error" ng-if="!showHints">
+            <div ng-message="required">Name is required.</div>
+            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+          </div>
+        </md-input-container>
+        <div layout-gt-sm="row">
+        
+    </div>
+        
+      </div>
+      <!--sign UP form -->
+      <md-content layout-padding>
+    
+      <div layout-gt-sm="row" >
+       
+        <md-autocomplete flex="" required="" md-input-name="autocompleteField" md-input-minlength="2" md-input-maxlength="18" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.display" md-floating-label="Your state">
+          <md-item-template>
+            <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
+          </md-item-template>
+          <div ng-messages="searchForm.autocompleteField.$error" ng-if="searchForm.autocompleteField.$touched">
+            <div ng-message="required">You <b>must</b> have a state.</div>
+            <div ng-message="minlength">Your entry is not long enough.</div>
+            <div ng-message="maxlength">Your entry is too long.</div>
+          </div>
+        </md-autocomplete>
+
+     
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Social Security Number</label>
+          <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+          <div class="hint" ng-if="showHints">###-##-####</div>
+          <div ng-messages="searchForm.social.$error" ng-if="!showHints">
+            <div ng-message="pattern">###-##-#### - Please enter a valid SSN.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Email</label>
+          <input name="email" ng-model="user.email"
+                 required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+          <div class="hint" ng-show="showHints">How can we reach you?</div>
+          <div ng-messages="searchForm.email.$error" ng-hide="showHints">
+            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+              Your email must be between 10 and 100 characters long and look like an e-mail address.
+            </div>
+          </div>
+        </md-input-container>
+        <div flex="5" hide-xs hide-sm>
+          <!-- Spacer //-->
+        </div>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Phone Number</label>
+          <input name="phone" ng-model="user.phone" ng-pattern="/^([0-9]{3}) [0-9]{3}-[0-9]{4}$/" />
+          <div class="hint" ng-show="showHints">(###) ###-####</div>
+          <div ng-messages="searchForm.phone.$error" ng-hide="showHints">
+            <div ng-message="pattern">(###) ###-#### - Please enter a valid phone number.</div>
+          </div>
+        </md-input-container>
+
+        <style>
+          /*
+           * The Material demos system does not currently allow targeting the body element, so this
+           * must go here in the HTML.
+           */
+          body[dir=rtl] .hint {
+            right: 2px;
+            left: auto;
+          }
+        </style>
+
+      </div>
+
+          <md-button class="md-raised md-primary">Sign up</md-button>
+        
+       
+    </form>
+  </md-content>
+    </form>
+     </md-card-actions>
+      </md-card>
+  </md-content>
+</div>
+
+
+
+
+    
+
+     <!-- Angular Material requires Angular.js Libraries -->
+   
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.js"></script>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-animate.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-aria.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+  <!-- Angular Material Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-animate.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+    
+<script src="./users/DemoController.js"></script>
+
+  </body>
+</html>
